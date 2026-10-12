@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Angela Marie Lamera - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">AM</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Internship Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#cv">CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-blob"></div>
+    <div class="hero-bg-blob2"></div>
+    <div class="hero-tag">Hi, I am</div>
+    <h1 class="hero-name">
+      Angela Marie Lamera<span class="role"></span>
+    </h1>
+    <p class="hero-desc">
+      Hands-on home lab experience — Windows Server, Active Directory, networking, and troubleshooting.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#cv" class="btn btn-ghost">CV</a>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+  </section>
+
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Career</div>
+    <h2 class="section-title" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 3.5rem;">
+    Internship Experience
+    </h2>
+
+    <div class="exp-timeline">
+
+      <div class="exp-item fade-up stagger-1">
+        <div class="exp-dot"></div>
+        <div class="exp-role">IT Technical Intern</div>
+        <div class="exp-company">UM ICT Department</div>
+        <div class="exp-meta">
+          <span class="exp-dates">June - July 2025</span>
+        </div>
+        <div class="exp-location">Davao City, Philippines</div>
+        <ul class="exp-bullets">
+          <li>Assisted end-users in person with technical issues related to workstations, printers, software, and network connectivity.</li>
+          <li>Handled troubleshooting, hardware and software maintenance, and network support for the department and its stakeholders.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">IT Support</span>
+          <span class="tag">Networking</span>
+          <span class="tag">Hardware</span>
+          <span class="tag">Software</span>
+          <span class="tag">Troubleshooting</span>
+        </div>
+      </div>
+
+      <div class="exp-item fade-up stagger-2">
+        <div class="exp-dot"></div>
+        <div class="exp-role">Frontend Developer Intern</div>
+        <div class="exp-company">Jairosoft, Inc.</div>
+        <div class="exp-meta">
+          <span class="exp-dates">March - May 2025</span>
+        </div>
+        <div class="exp-location">Davao City, Philippines</div>
+        <ul class="exp-bullets">
+          <li>Contributed to the development and maintenance of web interfaces, collaborating with a team of developers to build responsive and user-friendly frontend solutions.</li>
+          <li>Worked closely with designers and backend engineers to deliver polished digital products.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Angular</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Home Lab Projects</h2>
+
+    <div id="homelab-cards" class="homelab-grid"></div>
+    <p id="homelab-empty" class="hidden" style="color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.85rem;">
+      No lab projects published yet.
+    </p>
+    <div id="homelab-view-more-wrap" class="hidden" style="text-align: center; margin-top: 2.5rem;">
+      <a href="homelab/index.html" class="btn btn-ghost">View More Projects</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certificates</h2>
+
+    <div class="cert-carousel">
+      <button type="button" id="cert-prev-btn" class="cert-nav cert-nav-prev" onclick="scrollCertsPrev()">&#8249;</button>
+      <div id="certificates-grid" class="cert-track"></div>
+      <button type="button" id="cert-next-btn" class="cert-nav cert-nav-next" onclick="scrollCertsNext()">&#8250;</button>
+    </div>
+    <p id="certificates-empty" class="hidden" style="color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.85rem;">
+      No certificates added yet.
+    </p>
+  </section>
+  <div class="divider"></div>
+
+  <!-- CV -->
+  <section id="cv">
+    <div class="cv-wrapper">
+      <div class="cv-left">
+        <div class="section-label">Resume</div>
+        <h2 class="section-title">Download<br>My CV</h2>
+        <p class="cv-text">
+          Get a comprehensive overview of my education, skills, internship experience, and project portfolio in a clean, downloadable format. Updated and ready to share.
+        </p>
+        <div class="cv-actions">
+          <a href="cv/Lamera_Angela_CV.pdf" download="Lamera_Angela_CV.pdf" class="btn btn-primary">↓ Download CV</a>
+          <a href="cv/Lamera_Angela_CV.pdf" target="_blank" class="btn btn-ghost">View Online</a>
+        </div>
+        <p style="margin-top: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em;">
+          <!-- Replace <code style="color: var(--accent)">cv.pdf</code> with your actual CV file path. -->
+        </p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">AM</div>
+    <div class="footer-copy">© 2026 — Angela Marie J. Lamera. All rights reserved. </div>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/angelamarielamera/" target="_blank">LinkedIn</a>
+      <!-- <a href="mailto:angelajlamera@email.com">Email</a> -->
+    </div>
+  </footer>
+
+  <!-- Lightbox for viewing a certificate full-size -->
+  <div id="cert-lightbox" class="cert-lightbox" onclick="closeCertLightbox()">
+    <div class="cert-lightbox-panel" onclick="event.stopPropagation()">
+
+      <div class="cert-lightbox-img-wrap">
+        <button type="button" class="cert-lightbox-close" onclick="closeCertLightbox()">&times;</button>
+        <button type="button" class="cert-lightbox-nav cert-lightbox-prev" id="cert-lightbox-prev" onclick="showPrevCert(event)">&#8249;</button>
+        <button type="button" class="cert-lightbox-nav cert-lightbox-next" id="cert-lightbox-next" onclick="showNextCert(event)">&#8250;</button>
+        <img id="cert-lightbox-img" src="" alt="">
+      </div>
+
+    </div>
+  </div>
+  <!-- Pulls in the same data used by the homelab site, so every project added there
+       automatically shows up as a card here too. -->
+       <script src="homelab/assets/js/data/data.js"></script>
+       <script src="homelab/assets/js/data/domain.js"></script>
+       <script src="homelab/assets/js/data/data_dhcp.js"></script>
+       <script src="homelab/assets/js/data/adding_users.js"></script>
+       <script src="homelab/assets/js/data/adding_users_cli.js"></script>
+       <script src="assets/js/certificates.js"></script>
+       <script src="assets/js/render.js"></script>
+  
+
+</body>
+</html>

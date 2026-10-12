@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <script>
+        // Apply saved/system theme before first paint to avoid a flash of the wrong theme.
+        (function () {
+            const stored = localStorage.getItem("theme");
+            const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+            if (stored === "light" || (!stored && prefersLight)) {
+                document.documentElement.classList.add("light");
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+    <nav id="site-header"></nav>
+
+    <div id="project-not-found" class="hidden section-pad">
+        <p class="not-found">Project not found. <a href="index.html" style="color: var(--accent-text);">Back to Lab Projects &rarr;</a></p>
+    </div>
+
+    <div id="project-content" class="hidden">
+
+        <header class="page-header" style="padding-bottom: 0;">
+            <a href="index.html" class="back-link">&larr; Back to Lab Projects</a>
+            <div style="margin-top: 2rem;">
+                <div id="proj-category" class="section-label"></div>
+                <h1 id="proj-title" class="section-title" style="margin-bottom: 0.5rem;"></h1>
+                <div class="proj-meta">
+                    <span id="proj-tools"></span>
+                    <span id="proj-date"></span>
+                </div>
+                <p id="proj-summary" style="margin-top: 1.5rem;"></p>
+            </div>
+        </header>
+
+        <main class="section-pad" style="padding-top: 0;">
+            <div id="proj-gallery" class="proj-gallery"></div>
+
+            <div id="proj-description" class="proj-description"></div>
+
+            <div id="proj-related-wrap" class="hidden">
+                <h2 id="proj-related-heading" class="related-heading"></h2>
+                <div id="proj-related" class="homelab-grid"></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="divider"></div>
+
+    <footer id="site-footer"></footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-panel" onclick="event.stopPropagation()">
+
+            <div class="lightbox-img-wrap" id="lightbox-img-wrap">
+                <button type="button" onclick="closeLightbox()" class="lightbox-close">&times;</button>
+                <button type="button" onclick="showPrev(event)" id="lightbox-prev" class="lightbox-nav lightbox-prev">&#8249;</button>
+                <button type="button" onclick="showNext(event)" id="lightbox-next" class="lightbox-nav lightbox-next">&#8250;</button>
+                <span id="lightbox-counter" class="lightbox-counter"></span>
+                <img id="lightbox-img" src="" alt="" onclick="toggleZoom()">
+            </div>
+
+            <div class="lightbox-side">
+                <div class="lightbox-side-header">
+                    <span>Caption</span>
+                    <button type="button" onclick="closeLightbox()">&times;</button>
+                </div>
+                <p id="lightbox-caption" class="lightbox-caption"></p>
+                <p id="lightbox-caption-empty" class="lightbox-caption-empty hidden">No caption added for this screenshot.</p>
+
+                <div class="lightbox-footer">
+                    <p>Click the image to zoom in for fine detail (e.g. small text).</p>
+                    <a id="lightbox-fullsize" href="#" target="_blank" rel="noopener"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/data/data.js"></script>
+    <script src="assets/js/data/domain.js"></script>
+    <script src="assets/js/data/data_dhcp.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/project.js"></script>
+    <script src="assets/js/data/adding_users.js"></script>
+    <script src="assets/js/data/adding_users_cli.js"></script>
+   
+</body>
+</html>

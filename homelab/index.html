@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Projects</title>
+    <script>
+        // Apply saved/system theme before first paint to avoid a flash of the wrong theme.
+        (function () {
+            const stored = localStorage.getItem("theme");
+            const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+            if (stored === "light" || (!stored && prefersLight)) {
+                document.documentElement.classList.add("light");
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+    <nav id="site-header"></nav>
+
+    <header class="page-header">
+        <a href="../portfolio.html" class="back-link">&larr; Back to main portfolio</a>
+        <div style="margin-top: 2rem;">
+            <div class="section-label">Home Lab</div>
+            <h1 id="page-title" class="section-title"></h1>
+            <p id="page-tagline" class="page-tagline"></p>
+        </div>
+    </header>
+
+    <main class="section-pad" style="padding-top: 0;">
+        <div id="category-filters" class="filters"></div>
+
+        <div id="project-grid" class="homelab-grid"></div>
+
+        <p id="empty-state" class="empty-state hidden">No lab entries in this category yet.</p>
+    </main>
+
+    <div class="divider"></div>
+
+    <footer id="site-footer"></footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/data/data.js"></script>
+    <script src="assets/js/data/domain.js"></script>
+   <script src="assets/js/data/data_dhcp.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/data/adding_users.js"></script>
+    <script src="assets/js/data/adding_users_cli.js"></script>
+    <script>
+        function getActiveCategory() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("category") || "";
+        }
+
+        function renderFilters(activeSlug) {
+            const el = document.getElementById("category-filters");
+            let html = `<a href="index.html" class="filter-chip${activeSlug === "" ? " active" : ""}">All</a>`;
+            CATEGORIES.forEach((cat) => {
+                const isActive = activeSlug === cat.slug;
+                html += `<a href="index.html?category=${cat.slug}" class="filter-chip${isActive ? " active" : ""}">${cat.name}</a>`;
+            });
+            el.innerHTML = html;
+        }
+
+        function renderProjects(activeSlug) {
+            const grid = document.getElementById("project-grid");
+            const empty = document.getElementById("empty-state");
+
+            let projects = publishedProjects();
+            if (activeSlug) {
+                projects = projects.filter((p) => p.category === activeSlug);
+            }
+
+            if (projects.length === 0) {
+                grid.innerHTML = "";
+                empty.classList.remove("hidden");
+                return;
+            }
+            empty.classList.add("hidden");
+
+            grid.innerHTML = projects.map((project) => {
+                const cat = categoryBySlug(project.category);
+                const cover = coverImage(project);
+                const coverHtml = cover
+                    ? `<img src="${cover.src}" alt="${project.title}" class="homelab-card-cover">`
+                    : `<div class="homelab-card-cover" style="display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:0.75rem;">No screenshot yet</div>`;
+
+                return `
+                    <a href="project.html?slug=${project.slug}" class="homelab-card fade-up">
+                        ${coverHtml}
+                        <div class="homelab-card-body">
+                            <div class="homelab-card-category">${cat ? cat.name : ""}</div>
+                            <div class="homelab-card-title">${project.title}</div>
+                            ${project.summary ? `<div class="homelab-card-desc">${project.summary}</div>` : ""}
+                        </div>
+                    </a>
+                `;
+            }).join("");
+
+            initFadeUp();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("page-title").textContent = "All Lab Projects";
+            document.getElementById("page-tagline").textContent = SITE.tagline;
+
+            const activeSlug = getActiveCategory();
+            renderFilters(activeSlug);
+            renderProjects(activeSlug);
+        });
+    </script>
+
+</body>
+</html>
