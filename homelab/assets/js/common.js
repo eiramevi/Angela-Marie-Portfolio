@@ -68,9 +68,9 @@ function renderHeader() {
     if (!el) return;
     const initials = siteInitials();
     el.innerHTML = `
-        <a href="../portfolio.html" class="nav-logo">${initials}</a>
+        <a href="../index.html" class="nav-logo">${initials}</a>
         <ul class="nav-links">
-            <li><a href="../portfolio.html">Portfolio</a></li>
+            <li><a href="../index.html">Portfolio</a></li>
             <li><a href="index.html">Lab Projects</a></li>
             <li><button type="button" class="theme-toggle" onclick="toggleTheme()"></button></li>
         </ul>
